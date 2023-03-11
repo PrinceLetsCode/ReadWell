@@ -21,9 +21,9 @@ const HomeAfterLogin = () => {
 
 
 	return (
-		<>
-			<section >
-			<h1>ReadWell</h1>
+		<section className='main-container'>
+			<section className='content-container'>
+			<h1 className='heading-main'>ReadWell</h1>
 				<form className='add-book' method='post'>
 				<input
 					type="text"
@@ -59,7 +59,7 @@ const HomeAfterLogin = () => {
 					<button onClick={()=> navigate('/user/favouritebooks')} className='btn home-btn'>Favourites</button>
 					<button onClick={()=> navigate('/user/completedbooks')} className='btn home-btn'>Completeds</button>
 			</section>
-		</>
+		</section>
 
 		
 	)

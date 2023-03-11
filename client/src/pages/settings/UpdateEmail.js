@@ -31,7 +31,7 @@ const UpdateEmail = () => {
 	}
 
 	return (
-		<section>
+		<section className='main-container'>
 			<h1>Update Email</h1>
 			<form method='post'>
 				<input

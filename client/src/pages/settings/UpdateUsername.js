@@ -30,8 +30,8 @@ const UpdateUsername = () => {
 	}
 
 	return (
-		<section>
-			<h1>Update Username</h1>
+		<section className='main-container'>
+			<h1 className='headings'>Update Username</h1>
 			<form method='post'>
 				<input
 					type='email'

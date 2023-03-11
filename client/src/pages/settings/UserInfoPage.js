@@ -43,17 +43,20 @@ const UserInfoPage = () => {
 	}, [])
 
 	return (
-		<section>
+		<section className='main-container'>
 			{/* Rendering user information */}
-			<h2>Name: {data.name} </h2>
-			<h2>username: {data.userName} </h2>
-			<h2>email: {data.email}</h2>
-			<h2>phone: {data.phone}</h2>
-			<h2>account: {data.isVerified} </h2>
-			<h2>All Books: {data.allBooks.length} </h2>
-			<h2>Ongoing Books: {data.ongoingBooks.length} </h2>
-			<h2>Favourite Books: {data.favouriteBooks.length} </h2>
-			<h2>Completed Books: {data.completedBooks.length} </h2>
+			<article className='content-container'>
+				<h2>Name: {data.name} </h2>
+				<h2>username: {data.userName} </h2>
+				<h2>email: {data.email}</h2>
+				<h2>phone: {data.phone}</h2>
+				<h2>account: {data.isVerified} </h2>
+				<h2>All Books: {data.allBooks.length} </h2>
+				<h2>Ongoing Books: {data.ongoingBooks.length} </h2>
+				<h2>Favourite Books: {data.favouriteBooks.length} </h2>
+				<h2>Completed Books: {data.completedBooks.length} </h2>
+			</article>
+			
 		</section>
 	)
 };

@@ -36,7 +36,7 @@ const signUp = async (req, res) => {
 				subject: "please verify your email",
 				text: `
 					Thanks for signing up! To verify your email, click here:
-					http://localhost:3000/api/v1/verifyEmail/${verificationString}
+					http://localhost:3000/user/verifyEmail/${verificationString}
 				`
 			})
 		} catch (error) {

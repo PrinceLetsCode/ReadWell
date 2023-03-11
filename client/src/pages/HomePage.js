@@ -9,9 +9,9 @@ const HomePage = () => {
     // * use getUsername utility funciton  -> create it in utils folder.
 
     return (
-        <section>
+        <section className='main-container'>
             {loggedIn
-                ? <section className="home-section">
+                ? <section className="home-container">
                     <h1> ReadWell</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing
@@ -32,7 +32,7 @@ const HomePage = () => {
                     </div>
                 </section>
                 :
-                <section className="home-section">
+                <section className="content-container">
                     <h1>ReadWell</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing

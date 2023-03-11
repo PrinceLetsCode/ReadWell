@@ -56,8 +56,8 @@ const LoginPage = () => {
 
 	// Render the login form with input fields for email and password, and buttons for logging in, resetting the password, and creating a new account
 	return (
-		<section>
-			<h1>Log In</h1>
+		<section className='main-container'>
+			<h1 className='headings'>Log In</h1>
 			{errorMessage && <div>{errorMessage}</div>}
 			<form method='post'>
 				<input

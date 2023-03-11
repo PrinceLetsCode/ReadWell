@@ -23,6 +23,8 @@ import FavouriteBooks from "../pages/FavouriteBooks";
 import OngoingBooks from "../pages/OngoingBooks";
 
 import ForgotPassword from "../pages/ForgotPassword";
+import PleaseVerifyEmailPage from "../pages/PleaseVerifyEmailPage";
+import EmailVerificationPage from "../pages/EmailVerificationoPage";
 
 export const RoutesComponent = () => {
 
@@ -38,7 +40,11 @@ export const RoutesComponent = () => {
 					<Route exact path="/" element={<HomePage />} />
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/signup" element={<SignUpPage />} />
+
+
 					<Route path="/user" element={<HomeAfterLogin />} />
+					<Route path="/user/pleaseVerifyEmail" element={<PleaseVerifyEmailPage />} />
+					<Route path="/user/verifyEmail/:verificationString" element={ <EmailVerificationPage/>}/>
 					<Route path="/user/settings" element={<Settings />} />
 					<Route path="/user/settings/updateEmail" element={<UpdateEmail />} />
 					<Route path="/user/settings/updatePhone" element={<UpdatePhone />} />

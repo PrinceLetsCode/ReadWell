@@ -31,8 +31,8 @@ const UpdatePhone = () => {
 	}
 
 	return (
-		<section>
-			<h1>Update Phone</h1>
+		<section className='main-container'>
+			<h1 className='headings'>Update Phone</h1>
 			<form method='post'>
 
 				<input

@@ -2,7 +2,9 @@ import React from 'react'
 
 const FavouriteBooks = () => {
 	return (
-		<div>FavouriteBooks</div>
+		<section className='main-container'>
+			<h1>Favourite Books</h1>
+		</section>
 	)
 };
 

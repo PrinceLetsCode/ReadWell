@@ -35,11 +35,10 @@ const ForgotPassword = () => {
 
     }
 
-
     return (
-        <section>
+        <section className='main-container'>
+            <h1 className='headings'>Reset Your Password</h1>
             <form method='post'>
-
                 <input
                     type="email"
                     name='email'

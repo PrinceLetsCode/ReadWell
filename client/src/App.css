@@ -10,20 +10,24 @@
   border: 1px solid black;
 }
 
-.App {
-  text-align: center;
-}
 
 
-
-main{
-  position: relative;
+.main-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  
-  height: 100vh;
+  align-items: center;
+  height: 90vh;
+}
+
+.content-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  padding: 1rem;
+  gap: 1rem;
+  margin: 1rem;
 }
 
 
@@ -32,33 +36,27 @@ form{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   gap: 1rem;
 
   max-width: 400px;
   width: 100%;
-
-  margin: auto;
 }
 
+
+.heading-main{
+  font-size: 4rem;
+}
+
+.headings{
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
 
 h1{
   text-align:center;
 }
 
-article{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  gap: 1rem;
-  padding: 1.5rem;
-
-  max-width: 500px;
-  width: 100%;
-
-  margin: auto;
-}
 
 input{
   padding: .5rem;
@@ -81,15 +79,14 @@ hr{
 }
 
 nav{
-  position: absolute;
   width: 100%;
-  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #D9D9D9;
 
+  background-color: #D9D9D9;
+  
 }
 
 svg{
@@ -122,35 +119,26 @@ svg{
 * HOME SECTION
 
 ============================ */
-
-.home-section{
+.home-container
+{
   display: flex;
   flex-direction: column;
+  max-width: 700px;
   justify-content: center;
   align-items: center;
 
-  margin: auto;
-  gap: 2.5rem;
+  gap: 2rem;
+  margin: 1rem;
 
-  padding: 1rem 2rem;
-  max-width: 900px;
-  width: 100%;
-  height: 400px;
-  
 }
 
-.home-section h1{
-  font-size: 5rem;
+.home-container h1{
+  font-size: 4rem;
 }
 
-.home-section p{
-  padding: 0 5rem;
+.home-container p{
   text-align: center;
-}
-
-.home-section button{
-  padding: 1rem 2rem;
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
 .btn-div{
@@ -160,23 +148,18 @@ svg{
 }
 
 .btn-grid{
-
-  margin: auto;
-  margin-top: 1rem;
-
   max-width: 500px;
   width: 100%;
 
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 1rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .add-book{
   max-width: 600px;
   width: 100%;
-  margin: auto;
 }
 
 .home-btn{
@@ -197,9 +180,4 @@ svg{
   .sidebar button{
     font-size: .9rem;
     padding: .5rem;
-  }
-
-  article div{
-    padding: 1rem;
-    font-size: 1.5rem;
   }

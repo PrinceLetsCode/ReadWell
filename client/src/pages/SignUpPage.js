@@ -16,6 +16,7 @@ const SignUpPage = () => {
 		confirmPassword: "",
 		phone: "",
 	});
+
 	const navigate = useNavigate();
 	const { setLoggedIn } = useLoggedInContext();
 	const [errorMessage, setErrorMessage] = useState('');
@@ -38,10 +39,12 @@ const SignUpPage = () => {
 				password: user.password,
 				phone: user.phone,
 			})
+
 			const { token } = res.data;
 			setToken(token);
 			setLoggedIn(true);
-			navigate('/');
+			navigate('/user/pleaseVerifyEmail');
+			
 		} catch (error) {
 			setErrorMessage(error.message);
 		}
@@ -49,9 +52,9 @@ const SignUpPage = () => {
 
 
 	return (
-		<section>
+		<section className='main-container'>
 
-			<h1>Sign Up</h1>
+			<h1 className="headings">Sign Up</h1>
 			{errorMessage && <div className="fail">{errorMessage}</div>}
 			<form method="POST">
 

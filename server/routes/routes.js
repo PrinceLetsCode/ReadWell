@@ -27,9 +27,9 @@ router.route('/user/settings/updateUsername').post(updateUsername);
 router.route('/user/settings/updateEmail').post(updateEmail);
 router.route('/user/settings/updatePhone').post(updatePhone);
 router.route('/user/settings/updatePassword').post(updatePassword);
+router.route('/user/verifyEmail').post(verifyEmail);
 // ! TO BE DONE
 router.route('/updateinfo').post(updateInfo);
-router.route('/verifyEmail').put(verifyEmail);
 
 
 module.exports = router;

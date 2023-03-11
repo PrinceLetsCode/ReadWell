@@ -42,8 +42,9 @@ const UpdatePassword = () => {
 	}
 
 	return (
-		<section>
-			<h1>Update Password</h1>
+		<section className='main-container'>
+			<article className='content-container'>
+			<h1 className='headings'>Update Password</h1>
 			<form method='post'>
 				<input type="email"
 					name='email'
@@ -83,7 +84,8 @@ const UpdatePassword = () => {
 					errorMessage && <div>{errorMessage}</div>
 				}
 
-			</form>
+				</form>
+			</article>
 		</section>
 	)
 };
