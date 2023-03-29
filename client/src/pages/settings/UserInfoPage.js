@@ -1,9 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import useUser from '../../auth/useUser'; // Importing custom hook
-import axios from 'axios'; // Importing axios for HTTP requests
+/** 
+ * @description This component is used to display user information
+ * @param {Object} props - The props passed to the component by its parent
+ * @return {JSX.Element} The JSX code representing the UserInfoPage component
+ * @requires axios
+ * @requires react
+ * @requires ../../auth/useUser
+ * @requires react-router-dom
+ * */ 
 
+// Import the required modules
+import React, { useEffect, useState } from 'react';
+import useUser from '../../auth/useUser'; 
+import axios from 'axios'; 
+
+
+// The UserInfoPage component
 const UserInfoPage = () => {
-	// Initializing component state
+	//  The state variables
 	const [data, setData] = useState({
 		name: '',
 		userName: '',
@@ -16,35 +29,43 @@ const UserInfoPage = () => {
 		completedBooks: []
 	});
 
-	const { email } = useUser(); // Destructuring user email from custom hook
-	console.log(email); // Logging user email
+
+	// Getting user email from useUser hook
+	const { email } = useUser(); 
+
 
 	// Function to fetch user data from server
 	const getUser = async () => {
 		try {
+
+			// Sending a POST request to the server to get user data
 			const res = await axios.post('/api/v1/user/getUser', {
-				email: email // Sending user email in request body
+				email: email 
 			});
 
-			const data = res.data; // Storing received data from server
-			// Updating state with the received data and setting isVerified value to 'Verified' or 'Not Verified'
-			const isVerified = data.isVerified ? 'Verified' : 'Not Verified'
-			setData({ ...data, isVerified });
-			console.log(data); // Logging received data
+			// Storing received data from server
+			const data = res.data; 
 
+			// Converting isVerified to string, so that it can be rendered 
+			// if isVerified is true, then it will be 'Verified' else 'Not Verified'
+			const isVerified = data.isVerified ? 'Verified' : 'Not Verified'
+
+			// Setting the state variable data to the received data
+			setData({ ...data, isVerified });
 		} catch (error) {
-			console.log(error); // Logging error if there is any
+			console.log(error); 
 		}
 	}
 
-	// Effect hook to fetch user data on component mount
+	//  Calling getUser function on component mount
 	useEffect(() => {
 		getUser();
 	}, [])
 
+
+	//  Returning the JSX code
 	return (
 		<section className='main-container'>
-			{/* Rendering user information */}
 			<article className='content-container'>
 				<h2>Name: {data.name} </h2>
 				<h2>username: {data.userName} </h2>
@@ -61,4 +82,5 @@ const UserInfoPage = () => {
 	)
 };
 
+// Export the UserInfoPage component
 export default UserInfoPage;

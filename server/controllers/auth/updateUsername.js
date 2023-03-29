@@ -1,4 +1,15 @@
-const { User } = require('../models/schema');
+/** 
+ * @description This file contains the updateUsername function, which updates the username of a user in the database.
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} The updated user document
+ * @requires bcrypt - The bcrypt module
+ * @requires ../../models/schema - The User model
+ */
+
+
+
+const { User } = require('../../models/schema');
 const bcrypt = require('bcrypt');
 
 
@@ -13,12 +24,12 @@ const updateUsername = async (req, res) => {
 
 		// If no user is found, send an error response
 		if (!user) {
-			return res.status(401).send("user doesn't exist");
+			return res.status(401).send({ message : 'User not found'});
 		}
 
 		// If the new username is the same as the current username, send an error response
 		if (newUsername === user.userName) {
-			return res.status(400).send(`Cannot update the username to current username.`);
+			return res.status(400).send({ message : 'New username cannot be the same as the current username'});
 		}
 
 		// Check if the provided password matches the user's password
@@ -26,17 +37,17 @@ const updateUsername = async (req, res) => {
 
 		// If the password is correct, update the user's username and return the updated document
 		if (isPasswordCorrect) {
-			const update = await User.findOneAndUpdate({ email }, { userName: newUsername }, { new: true }).select('userName');
-			res.status(200).send(update);
+			await User.findOneAndUpdate({ email }, { userName: newUsername }, { new: true }).select('userName');
+			res.status(200).send({message: 'Username updated successfully'});
 		}
 		else {
 			// If the password is incorrect, send an error response
-			res.status(400).send('incorrect password');
+			res.status(200).send({ error: 'Incorrect Credentials'});
 		}
 
 	} catch (error) {
 		// If an error occurs, send a generic error response
-		res.status(500).send('something went wrong');
+		res.status(500).send({ error: 'Something went wrong'});
 	}
 }
 

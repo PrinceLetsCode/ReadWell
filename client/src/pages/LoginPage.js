@@ -1,27 +1,33 @@
-/**
-	This module exports the LoginPage component, which allows users to log in to the application.
-	It uses the useToken and useLoggedInContext hooks to manage the user's authentication status.
-	The component renders a form with email and password input fields, and buttons to log in,
-	reset the password, and create a new account.
-*/
 
+/**  
+ * @description The LoginPage component allows users to log in to the application.
+ * @return {JSX.Element} The JSX code representing the LoginPage component
+ * @requires react (for JSX)
+ * @requires react-router-dom (for navigation)
+ * @requires axios (for making HTTP requests)
+ * @requires ../auth/useToken (custom hook)
+ * @requires ./context/loggedInContext (context)
+ */
+
+
+// import the required modules
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useToken from '../auth/useToken';
 import { useLoggedInContext } from '../context/loggedInContext';
 
-/**
-	The LoginPage component allows users to log in to the application.
-	@return {JSX.Element} The JSX code representing the LoginPage component
-*/
 
+// The LoginPage component
 const LoginPage = () => {
 
 	// Get setToken function from the useToken hook
 	const [, setToken] = useToken();
+
 	// Set up state for error messages, email, and password input fields
 	const [errorMessage, setErrorMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -31,25 +37,31 @@ const LoginPage = () => {
 	// Get the navigate function from the useNavigate hook
 	const navigate = useNavigate();
 
-	/**
-		The handleLogin function is called when the user submits the login form.
-		It sends a POST request to the '/api/v1/login' endpoint with the user's email and password.
-		If the request is successful, the user's token is saved, their authentication status is set to true,
-		and they are redirected to the home page. If the request fails, an error message is displayed.
-		@param {Event} e - The form submission event
-	*/
+	
+	// Function to handle the login form submission
 	const handleLogin = async (e) => {
 		e.preventDefault();
+		
 		try {
+			// Send a POST request to the server to log in
 			const res = await axios.post('/api/v1/login', {
 				email,
 				password
 			})
+
+			// If the login is successful then set the token in the local storage and navigate to the home page
 			const { token } = res.data;
+
+			//  Set the token in the local storage
 			setToken(token);
+
+			// Set the loggedIn state to true
 			setLoggedIn(true)
+
+			// Navigate to the home page
 			navigate('/');
 		} catch (error) {
+			// If the login is unsuccessful then set the error message
 			setErrorMessage(error.message)
 		}
 	}
@@ -98,4 +110,5 @@ const LoginPage = () => {
 	);
 };
 
+// Export the LoginPage component
 export default LoginPage;

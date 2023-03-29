@@ -1,13 +1,27 @@
+/** 
+ * @description This is the sign up page. It allows the user to sign up for an account.
+ * @return {JSX.Element} The JSX code representing the SignUpPage page.
+ * @requires react (for JSX)
+ * @requires react-router-dom (for navigation)
+ * @requires useToken (for setting the token)
+ * @requires axios (for making API calls)
+ * @requires useLoggedInContext (for setting the loggedIn state)
+ */
+
+
+// Import the required modules
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useToken from '../auth/useToken';
 import axios from 'axios';
 import { useLoggedInContext } from "../context/loggedInContext";
 
-
-
+// The SignUpPage component
 const SignUpPage = () => {
-	const [token, setToken] = useToken();
+	// get the setToken function from the useToken hook to set the token in the local storage
+	const [, setToken] = useToken();
+
+	//  Set up state for the user object
 	const [user, setUser] = useState({
 		name: "",
 		email: "",
@@ -17,21 +31,29 @@ const SignUpPage = () => {
 		phone: "",
 	});
 
+	// for navigation
 	const navigate = useNavigate();
+
+	// Get the setLoggedIn function from the useLoggedInContext hook to set the loggedIn state
 	const { setLoggedIn } = useLoggedInContext();
+
+	// Set up state for error and success messages
 	const [errorMessage, setErrorMessage] = useState('');
 
-	console.log('in the signup page');
+
+	// Handle change in the input fields
 	const handleChange = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
 		setUser({ ...user, [name]: value });
 	};
 
+	// Handle the form submission
 	const handleSignup = async (e) => {
 		e.preventDefault();
-		console.log('inside handle submit');
+
 		try {
+			//  Send a POST request to the server to sign up
 			const res = await axios.post('/api/v1/signup', {
 				name: user.name,
 				email: user.email,
@@ -40,22 +62,33 @@ const SignUpPage = () => {
 				phone: user.phone,
 			})
 
+			// If the sign up is successful then set the token in the local storage and navigate to the home page) {
 			const { token } = res.data;
-			setToken(token);
-			setLoggedIn(true);
-			navigate('/user/pleaseVerifyEmail');
+
+			if (token) {
+				setToken(token);
+				setLoggedIn(true);
+				navigate('/user/pleaseVerifyEmail');
+			}
+			else {
+				setErrorMessage('Something went wrong');
+			}
+
+			setInterval(() => {	
+				setErrorMessage('');
+			}, 3000);
 			
 		} catch (error) {
-			setErrorMessage(error.message);
+			setErrorMessage(error.response.data.message);
 		}
 	}
 
 
+	// Return the JSX code for the SignUpPage component
 	return (
 		<section className='main-container'>
 
 			<h1 className="headings">Sign Up</h1>
-			{errorMessage && <div className="fail">{errorMessage}</div>}
 			<form method="POST">
 
 				<input
@@ -111,6 +144,10 @@ const SignUpPage = () => {
 
 				<hr />
 
+				
+				{errorMessage && <div className="fail">{errorMessage}</div>}
+
+
 				<button
 					className="btn"
 					onClick={handleSignup}
@@ -128,4 +165,5 @@ const SignUpPage = () => {
 	)
 };
 
+// Export the SignUpPage component
 export default SignUpPage;

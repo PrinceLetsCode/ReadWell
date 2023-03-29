@@ -1,10 +1,14 @@
 /**
-*	This component represents the navigation bar of the application.
-*	It displays the logo and a user profile icon which, when clicked,
-	toggles the sidebar.
-	@return {JSX.Element} The JSX code representing the navigation bar
+ * @description This component represents the navigation bar of the application.
+ * @return {JSX.Element} The JSX code representing the navigation bar.
+ * @requires react (for JSX)
+ * @requires react-icons (for the icons) 
+ * @requires react-router-dom (for navigation)
+ * @requires ../context/sidebarContext (for the sidebar context)
 */
-import React, { useContext } from 'react';
+
+// Import the required modules
+import React from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { useSidebarContext } from '../context/sidebarContext';
 import { useNavigate } from 'react-router-dom';

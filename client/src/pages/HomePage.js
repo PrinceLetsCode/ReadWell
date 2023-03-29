@@ -1,16 +1,33 @@
+/** 
+ * @description: This is the home page of the application. It has a welcome message and a button to navigate to the user page.
+ * @return {JSX.Element} The JSX code representing the HomePage page.
+ * @requires react (for JSX)
+ * @requires react-router-dom (for navigation)
+ * @requires ..context/loggedInContext (for checking if the user is logged in)
+ */
+
+
+// Import the required modules
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoggedInContext } from "../context/loggedInContext";
 
+
+// The HomePage component
 const HomePage = () => {
+
+    // for navigation
     const navigate = useNavigate();
+
+    // get the loggedIn state from the context
     const { loggedIn } = useLoggedInContext();
 
-    // * use getUsername utility funciton  -> create it in utils folder.
 
+    // Return the JSX code
     return (
         <section className='main-container'>
             {loggedIn
+                //  If the user is logged in, show the user page with the add books button
                 ? <section className="home-container">
                     <h1> ReadWell</h1>
                     <p>
@@ -32,6 +49,7 @@ const HomePage = () => {
                     </div>
                 </section>
                 :
+                //  If the user is not logged in, show the home page with the login and signup buttons
                 <section className="content-container">
                     <h1>ReadWell</h1>
                     <p>
@@ -64,4 +82,6 @@ const HomePage = () => {
     );
 };
 
+
+// Export the HomePage component
 export default HomePage;

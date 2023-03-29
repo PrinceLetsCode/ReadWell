@@ -1,9 +1,11 @@
 /**
-	This module exports the LoggedInContext and the LoggedInProvider components.
-	The LoggedInContext is a React context that provides information about the user's
-	authentication status, and the LoggedInProvider component is responsible for
-	managing the state of the context.
-	
+ * @description This file contains the context for the authentication status of the user.
+ * @param {Object} props - The children of the LoggedInProvider component
+ * @returns {JSX.Element} The JSX code representing the LoggedInProvider component
+ * @requires react (for JSX)
+ * @requires react-router-dom (for navigation)
+ * @requires react (for the context)
+ * @requires ../auth/useUser (for the useUser hook)
 */
 
 import { useState, useEffect, createContext, useContext } from 'react';
@@ -11,16 +13,6 @@ import useUser from '../auth/useUser';
 
 // Create a new React context for the authentication status of the user
 const LoggedInContext = createContext();
-
-/**
-	The LoggedInProvider component is responsible for managing the state of the
-	LoggedInContext. It uses the useUser hook to retrieve the user object from the
-	authentication context, and sets the loggedIn state accordingly. The loggedIn
-	state is updated whenever the user object changes.
-	@param {Object} props - The children of the LoggedInProvider component
-	@return {JSX.Element} The JSX code representing the LoggedInProvider component
-*/
-
 
 export function LoggedInProvider({ children }) {
 
@@ -43,12 +35,12 @@ export function LoggedInProvider({ children }) {
 	);
 }
 
+
 /**
 	The useLoggedInContext hook allows child components to access the authentication
 	status of the user from the LoggedInContext.
 	@return {Object} An object containing the loggedIn state and the setLoggedIn function
 */
-
 export function useLoggedInContext() {
 	return useContext(LoggedInContext);
 }

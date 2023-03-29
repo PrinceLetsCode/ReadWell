@@ -1,8 +1,22 @@
-import React from 'react'
+/** 
+ * @description This page is displayed when a user signs up and is not verified yet.
+ * @return {JSX.Element} The JSX code representing the PleaseVerifyEmailPage page.
+ * @requires react (for JSX)
+ * @requires react-router-dom (for navigation)
+ */
+
+
+// Import the required modules
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// The PleaseVerifyEmailPage component
 const PleaseVerifyEmailPage = () => {
+
+	// for navigation
 	const navigate = useNavigate();
+
+	// Return the JSX code
 	return (
 		<div>
 			<h1>Thanks for signing up!</h1>
@@ -15,4 +29,5 @@ const PleaseVerifyEmailPage = () => {
 	)
 };
 
+// Export the PleaseVerifyEmailPage component'
 export default PleaseVerifyEmailPage;

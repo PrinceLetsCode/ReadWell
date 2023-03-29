@@ -1,10 +1,13 @@
 /**
-	This module exports the SidebarContext, SidebarProvider, and useSidebarContext components.
-	The SidebarContext is a React context that provides information about the sidebar state,
-	and the SidebarProvider component is responsible for managing the state of the context.
-	The useSidebarContext hook allows child components to access the sidebar state from the context.
+* @description The sidebarContext file contains the code for managing the state of the sidebar.
+* @param {Object} props - The children of the SidebarProvider component
+* @return {JSX.Element} The JSX code representing the SidebarProvider component
+* @requires react (for JSX)
+* @requires react (for the context)
 */
 
+
+// Import the required modules
 import React, { useContext, useState } from 'react';
 
 // Create a new React context for the sidebar state

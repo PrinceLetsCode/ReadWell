@@ -1,92 +1,13 @@
+/**
+ * @description: This file contains the schema for the database
+ * @requires mongoose - The mongoose module
+  */
+
+
+// import required modules
 const mongoose = require('mongoose');
 
-
-// * Schema for All Books Directory
-const allBooksSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: [true, 'must provide name of the book'],
-		trim: true,
-		maxlength: [50, 'name cannot be more than 50 characters'],
-		unique: true
-	},
-	authorName: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	readingStatus: {
-		type: Number,
-		default: false
-		// 0 -> Start Reading
-		// 1 -> Ongoing
-		// 2 -> Completed
-	},
-	favourites: {
-		type: Boolean,
-		default: false
-	}
-}, { timestamps: true });
-
-
-// * Schema for Ongoing Books Directory
-const ongoingBooksSchema = new mongoose.Schema(
-	{
-		name: {
-			type: String,
-			required: [true, 'must provide name of the book'],
-			trim: true,
-			maxlength: [40, 'name cannot be more than 40 characters'],
-			unique: true
-		},
-		authorName: {
-			type: String,
-			required: true,
-			trim: true
-		},
-	}, { timestamps: true, });
-
-
-
-// * Schema for Favourites Books Directory
-const favouriteBooksSchema = new mongoose.Schema({
-	// Do add Created_at and updated_at flags for your reference
-	//Also it helps to add an ID column as well but not mandatory
-	name: {
-		type: String,
-		required: [true, 'must provide name of the book'],
-		trim: true,
-		maxlength: [40, 'name cannot be more than 40 characters'],
-		unique: true
-	},
-	authorName: {
-		type: String,
-		required: true,
-		trim: true
-	},
-
-}, { timestamps: true })
-
-
-// * Schema for Completed Books Directory
-const completedBooksSchema = new mongoose.Schema({
-
-	name: {
-		type: String,
-		required: [true, 'must provide name of the book'],
-		trim: true,
-		maxlength: [40, 'name cannot be more than 40 characters'],
-		unique: true
-	},
-	authorName: {
-		type: String,
-		required: true,
-		trim: true
-	},
-
-}, { timestamps: true })
-
-
+//  Create a schema for the user
 const userSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -95,6 +16,7 @@ const userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		trim: true,
+		unique: true
 	},
 	userName: {
 		type: String,
@@ -104,40 +26,105 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 	},
-	phone: Number,
+	phone: String,
 	verificationString: String,
 	isVerified: {
 		type: Boolean,
 		default: false
 	},
 	allBooks: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'AllBooks',
+		bookName: {
+			type: String,
+			required: [true, 'must provide name of the book'],
+			trim: true,
+			maxlength: [50, 'name cannot be more than 50 characters'],
+		},
+		authorName: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		readingStatus: {
+			type: Number,
+			default: false
+			// 0 -> Start Reading
+			// 1 -> Ongoing
+			// 2 -> Completed
+		},
+		favourites: {
+			type: Boolean,
+			default: false
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now
+		}
 	}],
+
 	favouriteBooks: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'FavouriteBooks',
+		bookName: {
+			type: String,
+			required: [true, 'must provide name of the book'],
+			trim: true,
+			maxlength: [40, 'name cannot be more than 40 characters'],
+		},
+		authorName: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now
+		}
+
 	}],
 	ongoingBooks: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'OngoingBooks',
+
+		bookName: {
+			type: String,
+			required: [true, 'must provide name of the book'],
+			trim: true,
+			maxlength: [40, 'name cannot be more than 40 characters']
+		},
+		authorName: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now
+		}
+
 	}],
 	completedBooks: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'CompletedBooks',
+
+		bookName: {
+			type: String,
+			required: [true, 'must provide name of the book'],
+			trim: true,
+			maxlength: [40, 'name cannot be more than 40 characters']
+		},
+		authorName: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		createdAt: {
+			type: Date,
+			default:Date.now
+		}
+
 	}],
 });
 
-const AllBooks = mongoose.model('AllBooks', allBooksSchema);
-const FavouriteBooks = mongoose.model('FavouriteBooks', favouriteBooksSchema);
-const OngoingBooks = mongoose.model('OngoingBooks', ongoingBooksSchema);
-const CompletedBooks = mongoose.model('CompletedBooks', completedBooksSchema);
+
+// Create a model for the user
 const User = mongoose.model('User', userSchema);
 
+
+// Export the User model
 module.exports = {
-	AllBooks,
-	FavouriteBooks,
-	OngoingBooks,
-	CompletedBooks,
 	User,
 };

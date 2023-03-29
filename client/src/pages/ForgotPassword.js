@@ -1,40 +1,69 @@
-import React, { useState } from 'react'
+/** 
+ * @description This is the ForgotPassword page
+ * @return {JSX.Element} The JSX code representing the ForgotPassword page.
+ * @requires react (for JSX)
+ * @requires axios (for making API calls)
+ */
+
+// Import the required modules
+import React, { useState } from 'react';
 import axios from 'axios';
 
+
+// The ForgotPassword component
 const ForgotPassword = () => {
+
+    // State variables for the input fields
     const [email, setEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+    // State variables for the error and success messages    
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
 
+    // Function to change the password
     const changePassword = async (e) => {
         e.preventDefault();
         try {
+
+            console.log(email);
+            console.log(newPassword);
+
+            // Send a POST request to the server to change the password
             const res = await axios.post('/api/v1/login/forgotPassword', {
                 email,
                 newPassword,
             });
 
+            console.log(res);
+            // If the password is changed successfully then set the success message
+            if (res.data.message === 'Password reset successful.') {
+                setSuccessMessage(res.data.message);
+            }else{
+                setErrorMessage(res.data.message);
+            }
 
-            setSuccessMessage('Password Reset Successful');
             setTimeout(() => {
                 setSuccessMessage('');
+                setErrorMessage('');
             }, 3000);
 
-
+            // Clear the input fields
             setEmail('');
             setNewPassword('');
             setConfirmNewPassword('');
 
+
         } catch (error) {
+            // Set the error message
             setErrorMessage(errorMessage);
-            console.log(errorMessage);
         }
 
-    }
+    };
 
+    // Return the JSX code
     return (
         <section className='main-container'>
             <h1 className='headings'>Reset Your Password</h1>
@@ -65,10 +94,10 @@ const ForgotPassword = () => {
 
                 <hr />
                 {
-                    errorMessage && <div>{errorMessage}</div>
+                    errorMessage && <div className='fail'>{errorMessage}</div>
                 }
                 {
-                    successMessage && <div>{successMessage}</div>
+                    successMessage && <div className='success'>{successMessage}</div>
                 }
                 < button
                     disabled={!newPassword || !confirmNewPassword || newPassword !== confirmNewPassword}
@@ -79,8 +108,7 @@ const ForgotPassword = () => {
             </form>
         </section>
     );
-
-
 };
 
+// Export the ForgotPassword component
 export default ForgotPassword;

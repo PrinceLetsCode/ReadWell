@@ -1,35 +1,61 @@
+/** 
+ * @description This component is used to update the phone number of the user
+ * @param {Object} props - The props passed to the component by its parent
+ * @return {JSX.Element} The JSX code representing the UpdatePhone component
+ * @requires axios
+ * @requires react
+ * @requires react-router-dom
+ * @requires ../../context/loggedInContext
+*/
+
+
+// Import the required modules 	
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useLoggedInContext } from '../../context/loggedInContext';
 
+//  The UpdatePhone component
 const UpdatePhone = () => {
+
+
+	// The state variables
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
 	const [newPhone, setNewPhone] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
+
+	// for context
 	const { setLoggedIn } = useLoggedInContext();
+
+	// for navigation
 	const navigate = useNavigate();
 
-
+	// The function to update the user's phone number
 	const updatePhone = async (e) => {
 		e.preventDefault();
 		try {
-			const res = await axios.post('/api/v1/user/settings/updatePhone', {
+			// 	Send a POST request to the server to update the user's phone number
+			await axios.post('/api/v1/user/settings/updatePhone', {
 				email,
 				phone,
 				newPhone,
 				password
-			});
+			});			
+			// If the request is successful, remove the token from localStorage and set the loggedIn state to false.
 			localStorage.removeItem('token');
 			setLoggedIn(false);
+
+			// Navigate to the login page
 			navigate('/login');
 		} catch (error) {
-			setErrorMessage(error.message);
+			// If the request is unsuccessful, set the error message to the error message returned from the server.
+			setErrorMessage(error.response.data.message);
 		}
 	}
 
+	// The JSX code representing the UpdatePhone component
 	return (
 		<section className='main-container'>
 			<h1 className='headings'>Update Phone</h1>
@@ -67,6 +93,9 @@ const UpdatePhone = () => {
 					placeholder='Enter Your Password'
 				/>
 
+				<hr />
+
+				{errorMessage && <p className='fail'>{errorMessage}</p>}
 
 				<button
 					disabled={
@@ -76,12 +105,12 @@ const UpdatePhone = () => {
 					onClick={updatePhone}>
 					Update Phone
 				</button>
-				{
-					errorMessage && <div>{errorMessage}</div>
-				}
+		
 			</form>
 		</section>
 	)
 };
 
+
+// Export the UpdatePhone component
 export default UpdatePhone;
