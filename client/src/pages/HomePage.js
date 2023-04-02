@@ -30,13 +30,13 @@ const HomePage = () => {
                 //  If the user is logged in, show the user page with the add books button
                 ? <section className="home-container">
                     <h1> ReadWell</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Voluptatem nisi velit assumenda reprehenderit,
-                        dolores eos accusantium beatae ea, eveniet quidem
-                        veniam et suscipit delectus minus molestias commodi
-                        vitae vel aliquid!
-                    </p>
+                    <div className="greetings">
+                        <h2>Welcome to your personalized E-library</h2>
+                        <p>
+                            <i>Experience the joy of organized reading.</i>
+
+                        </p>
+                    </div>
                     <div className="btn-div">
                         <button
                             className="btn"
@@ -50,30 +50,20 @@ const HomePage = () => {
                 </section>
                 :
                 //  If the user is not logged in, show the home page with the login and signup buttons
-                <section className="content-container">
+                <section className="home-container">
                     <h1>ReadWell</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Voluptatem nisi velit assumenda reprehenderit,
-                        dolores eos accusantium beatae ea, eveniet quidem
-                        veniam et suscipit delectus minus molestias commodi
-                        vitae vel aliquid!
-                    </p>
+                    <div className="greetings">
+                        <h2>Welcome to your personalized library</h2>
+                        <p>
+                            <i>Experience the joy of organized reading.</i>
+
+                        </p>
+                    </div>
                     <div className="btn-div">
-                        <button
-                            className="btn"
-                            onClick={() => {
-                                navigate("/login");
-                            }}
-                        >
+                        <button className="btn" onClick={() => { navigate("/login") }}>
                             Log In
                         </button>
-                        <button
-                            className="btn"
-                            onClick={() => {
-                                navigate("/signup");
-                            }}
-                        >
+                        <button className="btn" onClick={() => { navigate("/signup") }}>
                             Sign Up
                         </button>
                     </div>

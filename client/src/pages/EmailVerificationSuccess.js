@@ -21,10 +21,12 @@ const EmailVerificationSuccess = () => {
 	// Return the JSX code
 	return (
 		<section className='main-container'>
-			<h1>Success!</h1>
-			<p>Thanks for verifying your email, now you can use all site features</p>
+			<div className='content-container'>
+				<h1>Success!</h1>
+				<p>Thanks for verifying your email, now you can use all site features</p>
 
-			<button className='btn' onClick={() => { navigate('/') }}>Go to Home Page</button>
+				<button className='btn' onClick={() => { navigate('/') }}>Go to Home Page</button>
+			</div>
 		</section>
 	);
 };

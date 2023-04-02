@@ -20,11 +20,13 @@ const EmailVerificationFail = () => {
 	// Return the JSX code
 	return (
 		<section className='main-container'>
+			<div className='content-container'>
 				<h1>Uh Oh...</h1>
-			<p>Something went wrong while trying to verify your email.</p>
-			
+				<p>Something went wrong while trying to verify your email.</p>
+
 				{/*  Button to navigate to the Sign Up page */}
 				<button className='btn' onClick={() => { navigate('/signup') }}>Back to Sign Up Page</button>
+			</div>
 		</section>);
 };
 

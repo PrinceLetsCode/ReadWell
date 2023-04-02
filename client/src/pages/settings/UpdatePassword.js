@@ -7,7 +7,7 @@
  * @requires react-router-dom
  * @requires ../../context/loggedInContext
  * */
-  
+
 // Import the required modules
 import React, { useState } from 'react'
 import axios from 'axios';
@@ -64,10 +64,10 @@ const UpdatePassword = () => {
 				// Navigate to the login page
 				navigate('/login');
 			}
-	
+
 		} catch (error) {
 			// If the request is unsuccessful, set the error message to the error message returned from the server.
-			setErrorMessage( error.response.data.message);
+			setErrorMessage(error.response.data.message);
 		}
 
 	}
@@ -77,7 +77,6 @@ const UpdatePassword = () => {
 	// Return the JSX code for the UpdatePassword component
 	return (
 		<section className='main-container'>
-			<article className='content-container'>
 			<h1 className='headings'>Update Password</h1>
 			<form method='post'>
 				<input type="email"
@@ -106,10 +105,10 @@ const UpdatePassword = () => {
 					value={user.oldPassword}
 					onChange={handleChange}
 					placeholder='Enter your old password'
-					/>
+				/>
 
-					<hr />
-					
+				<hr />
+
 				{errorMessage && <p className='fail'>{errorMessage}</p>}
 
 				<button
@@ -118,9 +117,8 @@ const UpdatePassword = () => {
 					onClick={updatePassword}
 				>Update Password
 				</button>
-		
-				</form>
-			</article>
+
+			</form>
 		</section>
 	)
 };

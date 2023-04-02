@@ -4,14 +4,13 @@
 
 ============================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* border: 1px solid black; */
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .main-container {
@@ -30,6 +29,18 @@
     padding: 1rem;
     gap: 1rem;
     margin: 1rem;
+}
+
+button {
+    border: 2px solid black;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
 }
 
 form {
@@ -51,18 +62,25 @@ form {
 .headings {
     font-size: 2rem;
     margin-bottom: 1.5rem;
+
+    border: 2px solid black;
+    padding: 0.5rem;
+    border-radius: 10px;
 }
 
 .fail {
-    padding: 1rem;
+    padding: 0.5rem;
     color: white;
     background-color: red;
+
+    border-radius: 10px;
 }
 
 .success {
-    padding: 1rem 2rem;
+    padding: 0.5rem;
     color: white;
     background-color: green;
+    border-radius: 10px;
 }
 
 h1 {
@@ -89,26 +107,28 @@ hr {
     font-size: 1rem;
 }
 
-.btn:hover {
-    cursor: pointer;
-}
-
-.completed:hover, .ongoing:hover {
+.completed:hover,
+.ongoing:hover {
     cursor: not-allowed;
 }
 
-.favourite:hover, .delete:hover, .mark-completed:hover {
+.favourite:hover,
+.delete:hover,
+.mark-completed:hover {
     cursor: pointer;
 }
 
-.date:hover{
-    cursor:auto;
+.date {
+    border: 1px solid orangered;
 }
 
-.no-books{
+.date:hover {
+    cursor: auto;
+}
+
+.no-books {
     text-align: center;
 }
-
 
 nav {
     width: 100%;
@@ -134,6 +154,8 @@ svg {
     justify-content: center;
     /* align-items: center; */
     text-align: center;
+
+    border: 2px solid black;
 
     width: 200px;
 
@@ -191,6 +213,15 @@ svg {
 .add-book {
     max-width: 600px;
     width: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.greetings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
 }
 
 .home-btn {
@@ -212,6 +243,18 @@ svg {
     padding: 0.5rem;
 }
 
+.user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.5rem;
+    border-radius: 10px;
+
+    border: 1px solid black;
+}
+
 /* =========================
 
 * ALL BOOK SECTION
@@ -222,11 +265,20 @@ svg {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 600px;
 }
 
 .books-container {
     padding: 0.5rem;
     border: 1px solid black;
     border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0.5rem;
+}
+
+.book-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }

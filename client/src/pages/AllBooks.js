@@ -52,7 +52,7 @@ const AllBooks = () => {
 		} catch (error) {
 			setErrorMessage('Something Went Wrong');
 		}
-	}
+	};
 
 
 
@@ -80,9 +80,9 @@ const AllBooks = () => {
 	if (allBooks.length === 0) {
 		return (
 			<div className='main-container'>
-			<h1 className='headings'>All Books</h1>
+				<h1 className='headings'>All Books</h1>
 				<h2 className='no-books'><u>There are no books in the directory.</u></h2>
-		</div>)
+			</div>)
 
 	};
 
@@ -91,6 +91,7 @@ const AllBooks = () => {
 	return (
 		<section className='main-container'>
 			<h1 className='headings'>All Books</h1>
+
 			{
 				errorMessage ? <h1>{errorMessage}</h1> :
 					allBooks.map((book) => {

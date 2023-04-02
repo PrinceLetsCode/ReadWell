@@ -7,7 +7,7 @@
  * @requires axios (for sending requests to the server)
  * @requires ../../auth/useUser (context)
  * @requires ../../context/allBooksContext (context)
- * */ 
+ * */
 
 
 // Import the required modules
@@ -22,7 +22,7 @@ import useUser from '../auth/useUser';
 const SingleBooksFavourite = ({ book }) => {
 
 	// Destructure the book object
-	const { bookName, authorName,createdAt } = book;
+	const { bookName, authorName, createdAt } = book;
 
 	// 	Retrieve the bookDeleted state and the setBookDeleted function from the AllBooksContext
 	const { bookDeleted, setBookDeleted } = useAllBooksContext();
@@ -57,12 +57,14 @@ const SingleBooksFavourite = ({ book }) => {
 				<h1>{bookName}</h1>
 				<p>{authorName}</p>
 			</div>
-			<AiFillDelete
-				onClick={deleteFromFavourite}
-				className='icons delete'
-			/>
+			<div className='book-options'>
+				<AiFillDelete
+					onClick={deleteFromFavourite}
+					className='icons delete'
+				/>
 
-			<div className='btn date'>{ new Date(createdAt).toDateString()}</div>
+				<div className='btn date'>{new Date(createdAt).toDateString()}</div>
+			</div>
 		</div>
 	);
 };

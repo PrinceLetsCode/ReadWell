@@ -26,7 +26,6 @@ const LoginPage = () => {
 
 	// Set up state for error messages, email, and password input fields
 	const [errorMessage, setErrorMessage] = useState('');
-	const [successMessage, setSuccessMessage] = useState('');
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -37,11 +36,11 @@ const LoginPage = () => {
 	// Get the navigate function from the useNavigate hook
 	const navigate = useNavigate();
 
-	
+
 	// Function to handle the login form submission
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		
+
 		try {
 			// Send a POST request to the server to log in
 			const res = await axios.post('/api/v1/login', {

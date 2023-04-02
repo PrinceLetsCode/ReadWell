@@ -106,7 +106,7 @@ const HomeAfterLogin = () => {
 			}
 			else {
 
-			// Setting the state with the received data
+				// Setting the state with the received data
 				setBooks({
 					allBooks: data.allBooks,
 					ongoingBooks: data.ongoingBooks,
@@ -118,8 +118,8 @@ const HomeAfterLogin = () => {
 			// Clear the error message after 3 seconds
 			setTimeout(() => {
 				setErrorMessage('');
-			},3000);
-			
+			}, 3000);
+
 
 		} catch (error) {
 			setErrorMessage('Something went wrong');
@@ -135,7 +135,7 @@ const HomeAfterLogin = () => {
 	// Return the JSX code
 	return (
 		<section className='main-container'>
-			<section className='content-container'>
+			<section className='content-container add-book'>
 				<h1 className='heading-main'>ReadWell</h1>
 				<form className='add-book' method='post'>
 					<input
@@ -171,7 +171,7 @@ const HomeAfterLogin = () => {
 			</section>
 
 			<section className='btn-grid'>
-				<button onClick={() => navigate('/user/allbooks')} className='btn home-btn'>All  ({ books.allBooks.length })</button>
+				<button onClick={() => navigate('/user/allbooks')} className='btn home-btn'>All  ({books.allBooks.length})</button>
 				<button onClick={() => navigate('/user/ongoingbooks')} className='btn home-btn'>Ongoings ({books.ongoingBooks.length})</button>
 				<button onClick={() => navigate('/user/favouritebooks')} className='btn home-btn'>Favourites ({books.favouriteBooks.length})</button>
 				<button onClick={() => navigate('/user/completedbooks')} className='btn home-btn'>Completeds ({books.completedBooks.length})</button>

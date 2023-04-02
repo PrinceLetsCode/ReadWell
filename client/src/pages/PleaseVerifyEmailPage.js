@@ -18,13 +18,15 @@ const PleaseVerifyEmailPage = () => {
 
 	// Return the JSX code
 	return (
-		<div>
-			<h1>Thanks for signing up!</h1>
-			<p>
-				A verification email has been sent to your provided email address, please verify your email to unlock full site features.
-			</p>
+		<div className='main-container'>
+			<div className='content-container'>
+				<h1>Thanks for signing up!</h1>
+				<p>
+					A verification email has been sent to your provided email address, please verify your email to unlock full site features.
+				</p>
 
-			<button onClick={() => navigate('/')} className='btn'>Go to Home Page</button>
+				<button onClick={() => navigate('/')} className='btn'>Go to Home Page</button>
+			</div>
 		</div>
 	)
 };

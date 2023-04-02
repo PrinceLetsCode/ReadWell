@@ -8,7 +8,7 @@
  * @requires ../../auth/useUser (context)
  * @requires ../../context/allBooksContext (context)
  * @requires ./ReadingStatus (component)
- * */ 
+ * */
 
 
 // Import the required modules
@@ -25,7 +25,7 @@ import ReadingStatus from './ReadingStatus';
 const SingleBookAll = ({ book }) => {
 
 	//  Retrieve the favouriteChanged state and the setFavouriteChanged function from the AllBooksContext
-	const { favouriteChanged, setFavouriteChanged, setBookDeleted} = useAllBooksContext();
+	const { favouriteChanged, setFavouriteChanged, setBookDeleted } = useAllBooksContext();
 
 	// Destructure the book object
 	const {
@@ -34,7 +34,7 @@ const SingleBookAll = ({ book }) => {
 		readingStatus,
 		favourites } = book;
 
-	
+
 	// Retrieve the user object from the authentication context
 	const user = useUser();
 
@@ -83,19 +83,22 @@ const SingleBookAll = ({ book }) => {
 				<h1>{bookName}</h1>
 				<p>{authorName}</p>
 			</div>
-			{
-				// If the book is in the user's favourites, display a filled heart icon, else display an empty heart icon.
-				favourites ? <AiFillHeart onClick={addToFavourites} className='icons favourite' />
-					: <AiOutlineHeart onClick={addToFavourites} className='icons favourite' />
-			}
-			<AiFillDelete onClick={deleteBook} className='icons delete' />
 
-			{/* The ReadingStatus component */}
-			<ReadingStatus
-				readingStatus={readingStatus}
-				bookName={bookName}
-				authorName={authorName}
-			/>
+			<div className='book-options'>
+				{
+					// If the book is in the user's favourites, display a filled heart icon, else display an empty heart icon.
+					favourites ? <AiFillHeart onClick={addToFavourites} className='icons favourite' />
+						: <AiOutlineHeart onClick={addToFavourites} className='icons favourite' />
+				}
+				<AiFillDelete onClick={deleteBook} className='icons delete' />
+
+				{/* The ReadingStatus component */}
+				<ReadingStatus
+					readingStatus={readingStatus}
+					bookName={bookName}
+					authorName={authorName}
+				/>
+			</div>
 		</div>
 	);
 };

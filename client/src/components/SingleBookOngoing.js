@@ -78,11 +78,12 @@ const SingleBookOngoing = ({ book }) => {
 				<h1>{bookName}</h1>
 				<p>{authorName}</p>
 			</div>
-			<AiFillCheckCircle onClick={addToCompleted} className='icons mark-completed' />
-			<AiFillDelete onClick={deleteFromOngoing} className='icons delete' />
+			<div className='book-options'>
+				<AiFillCheckCircle onClick={addToCompleted} className='icons mark-completed' />
+				<AiFillDelete onClick={deleteFromOngoing} className='icons delete' />
 
-			<div className='btn date'>{new Date(createdAt).toDateString()}</div>
-
+				<div className='btn date'>{new Date(createdAt).toDateString()}</div>
+			</div>
 		</div>
 	);
 };

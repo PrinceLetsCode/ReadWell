@@ -8,7 +8,7 @@
  * @requires ../../auth/useUser (context)
  * @requires ../../context/allBooksContext (context)
  * @requires ./ReadingStatus (component)
- * */ 
+ * */
 
 
 
@@ -52,7 +52,7 @@ const SingleBookCompleted = ({ book }) => {
 		}
 	};
 
-	
+
 
 
 	// Return the JSX code for the SingleBookCompleted component
@@ -63,9 +63,11 @@ const SingleBookCompleted = ({ book }) => {
 				<hp>{authorName}</hp>
 			</div>
 
-			<AiFillDelete onClick={deleteFromCompleted} className='icons delete' />
-			<div className='btn date'>{ new Date(createdAt).toDateString()}</div>
+			<div className='book-options'>
 
+				<AiFillDelete onClick={deleteFromCompleted} className='icons delete' />
+				<div className='btn date'>{new Date(createdAt).toDateString()}</div>
+			</div>
 		</div>
 	);
 };
